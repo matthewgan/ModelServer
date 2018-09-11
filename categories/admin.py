@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import Category, SubCategory
+from .models import Category
 
 
-admin.site.register(Category)
-admin.site.register(SubCategory)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'isPublic', 'owner', )
+    search_fields = ('name', )
+
+
+admin.site.register(Category, CategoryAdmin)

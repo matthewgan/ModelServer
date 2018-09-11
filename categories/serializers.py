@@ -1,18 +1,11 @@
 from rest_framework import serializers
-from .models import Category, SubCategory
+from .models import Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    owner = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Category
-        # fields = "__all__"
-        exclude = ['timestamp', 'updated', ]
-
-
-class SubCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SubCategory
-        # fields = "__all__"
-        # exclude = ['category', ]
-        exclude = ['timestamp', 'updated', ]
-
+        fields = "__all__"
+        read_only_fields = ('created', 'updated', 'owner')
