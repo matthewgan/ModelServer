@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.generic import TemplateView
 from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
 
@@ -25,8 +27,11 @@ API_DESCRIPTION = 'A Web API for creating and viewing cloud database.'
 schema_view = get_schema_view(title=API_TITLE)
 
 urlpatterns = [
+    url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name='home.html'))),
+    url(r'^home', TemplateView.as_view(template_name='home.html')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^auth_api/', include('auth_api.urls')),
     url(r'^schema/$', schema_view),
     url(r'^docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION,
                                      authentication_classes=[], permission_classes=[],
