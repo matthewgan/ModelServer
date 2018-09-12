@@ -22,8 +22,8 @@ class AssetBundle(models.Model):
                                    blank=True)
     owner = models.ForeignKey(User, related_name='asset_bundle',
                               verbose_name="拥有者",
-                              on_delete=models.CASCADE,
-                              editable=False)
+                              on_delete=models.SET_NULL,
+                              null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
