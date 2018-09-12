@@ -7,4 +7,4 @@ class FbxSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fbx
         fields = "__all__"
-        read_only_fields = ('created', 'updated', )
+        read_only_fields = ('created', 'updated', 'owner')

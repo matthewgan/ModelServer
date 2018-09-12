@@ -3,6 +3,7 @@ from django.contrib.auth.models import AnonymousUser
 
 from .models import Category
 from .serializers import CategorySerializer
+from api.filters import IsOwnerFilterBackend, IsPublicFilterBackend, IsOwnerOrPublicFilterBackend
 
 
 class CategoryViewSet(ModelViewSet):
@@ -14,6 +15,16 @@ class CategoryViewSet(ModelViewSet):
             serializer.save()
         else:
             serializer.save(owner=self.request.user)
+
+
+class CategoryByOwnerViewSet(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    filter_backends = (IsOwnerOrPublicFilterBackend, )
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 
 # from django.http import Http404
 # from rest_framework.views import APIView
