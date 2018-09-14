@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import AssetBundle
 from .serializers import AssetBundleSerializer
-from api.filters import IsOwnerFilterBackend
+from api.filters import IsOwnerFilterBackend, IsOwnerOrPublicFilterBackend
 
 
 class AssetBundleViewSet(ModelViewSet):
@@ -21,7 +21,7 @@ class AssetBundleViewSet(ModelViewSet):
 class AssetBundleByOwnerViewSet(ModelViewSet):
     queryset = AssetBundle.objects.all()
     serializer_class = AssetBundleSerializer
-    filter_backends = (IsOwnerFilterBackend, )
+    filter_backends = (IsOwnerOrPublicFilterBackend, )
     permission_classes = (IsAuthenticated, )
 
     def perform_create(self, serializer):

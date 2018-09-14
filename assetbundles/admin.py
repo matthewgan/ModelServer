@@ -3,7 +3,7 @@ from .models import AssetBundle
 
 
 class AssetBundleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'fetchUrl', 'thumbnail', 'owner', )
+    list_display = ('name', 'category', 'fetchUrl', 'thumbnail', 'isPublic', 'owner', )
     search_fields = ('name', )
 
 

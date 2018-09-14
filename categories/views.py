@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from .models import Category
 from .serializers import CategorySerializer
-from api.filters import IsOwnerOrPublicFilterBackend
+from api.filters import IsOwnerOrPublicFilterBackend, IsOwnerFilterBackend
 from assetbundles.models import AssetBundle
 from assetbundles.serializers import AssetBundleSerializer
 
@@ -55,7 +55,8 @@ class CategoryByOwnerViewSet(ModelViewSet):
             return Http404
 
     @action(methods=['get'], detail=True,
-            url_path='assetbundles', url_name='list_assetbundles')
+            url_path='assetbundles', url_name='list_assetbundles',
+            filter_backends=(IsOwnerFilterBackend,))
     def list_assetbundles(self, request, pk, format=None):
         print(pk)
         assetbundles = self.get_objects(pk=pk)

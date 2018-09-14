@@ -24,11 +24,17 @@ class AssetBundle(models.Model):
                               verbose_name="拥有者",
                               on_delete=models.SET_NULL,
                               null=True)
+    isPublic = models.BooleanField(default=False, verbose_name="是否公开")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
+    
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.isPublic = self.category.isPublic
+        super(AssetBundle, self).save()
 
     class Meta:
         verbose_name = "素材模型"
