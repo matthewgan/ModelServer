@@ -6,26 +6,68 @@
 {% block content %}
 <div ng-app="modelserver">
     <div ng-controller="CategoryController">
-        <h2> Categories </h2>
+        <h3> 素材分类 </h3>
         <div class="nav nav-pills" role="tablist">
             {% verbatim %}
             <li role="presentation" ng-repeat="category in categories">
                 <a href="#" ng-click="get_assets_under_category(assets, category)">{{ category.name }}</a>
             </li>
             {% endverbatim %}
-            <li role="presentation">
-                <a href="#">+</a>
-            </li>
+            <a href="#" class="btn btn-primary my-2">新增</a>
+            <!--a href="#" class="btn btn-primary my-2">删除</a-->
         </div>
-        <h2> AssetBundles</h2>
-        <div class="col-lg-4" ng-repeat="asset in assets">
-            {% verbatim %}
-            <img class="img-circle" src="{{ asset.thumbnail }}"
-                 alt="Cannot load thumbnail URL from database"
-                 width="128" height="128">
-            <h3>{{ asset.name }}</h3>
-            <p>{{ asset.description }}</p>
-            {% endverbatim %}
+        <h3> 资源预览 </h3>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card md-4 shadow-sm" ng-repeat="asset in assets">
+                            {% verbatim %}
+                            <img class="card-img-top"
+                                 src="{{ asset.thumbnail }}"
+                                 alt="Cannot load thumbnail URL from database"
+                                 width="128" height="128">
+                            <div class="card-body">
+                                <p class="card-text">{{ asset.name }}</p>
+                                <p class="card-text">{{ asset.description }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">编辑</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">删除</button>
+                                </div>
+                            </div>
+                            {% endverbatim %}
+                        </div>
+                        <div class="card md-4 shadow-sm">
+                            <img class="card-img-top"
+                                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537443671380&di=add668baa0c19a60a20db5f4f9e5091b&imgtype=0&src=http%3A%2F%2Fwww.icosky.com%2Ficon%2Fpng%2FSystem%2FAesthetica%25202%2FFavorite%2520add.png"
+                                 alt="Cannot load thumbnail URL from database"
+                                 width="128" height="128">
+                            <div class="card-body">
+                                <p class="card-text">{{ asset.name }}</p>
+                                <p class="card-text">{{ asset.description }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">新增</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--
+            <div class="col-lg-4" ng-repeat="asset in assets">
+                {% verbatim %}
+                <img class="img-circle" src="{{ asset.thumbnail }}"
+                     alt="Cannot load thumbnail URL from database"
+                     width="128" height="128">
+                <h3>{{ asset.name }}</h3>
+                <p>{{ asset.description }}</p>
+                {% endverbatim %}
+            </div>
+-->
         </div>
     </div>
 
