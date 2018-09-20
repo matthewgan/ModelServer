@@ -27,8 +27,8 @@ API_DESCRIPTION = 'A Web API for creating and viewing cloud database.'
 schema_view = get_schema_view(title=API_TITLE)
 
 urlpatterns = [
-    url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name='home.html'))),
-    url(r'^home', TemplateView.as_view(template_name='home.html')),
+    # url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name='home.html'))),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name="home_url"),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     # url(r'^auth_api/', include('auth_api.urls')),

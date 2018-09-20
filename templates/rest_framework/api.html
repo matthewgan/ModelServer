@@ -1,0 +1,26 @@
+{% extends "rest_framework/base.html" %}
+{% load i18n%}
+{% block title %}Spartan-MR Lab{% endblock %}
+
+{% block branding %}
+    <a class='navbar-brand' rel="nofollow" href="{{ home_url }}">
+        MR Interior Design Center
+    </a>
+{% endblock %}
+
+{% block userlinks %}
+    {% if user.is_authenticated %}
+        {% trans "Logged in" %}: {{ user.username }}
+        (<a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
+        <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>)
+    {% else %}
+       <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li class="active"><a href="">{% trans "Home" %}</a></li>
+
+    </ul>
+{% endblock %}

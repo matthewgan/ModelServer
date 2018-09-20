@@ -11,9 +11,9 @@ class AssetBundle(models.Model):
                                  related_name='asset_bundle',
                                  on_delete=models.SET_NULL,
                                  null=True)
-    fetchUrl = models.URLField(max_length=200,
+    fetchUrl = models.CharField(max_length=200,
                                verbose_name="下载地址")
-    thumbnail = models.URLField(max_length=200,
+    thumbnail = models.CharField(max_length=200,
                                 verbose_name="缩略图",
                                 null=True,
                                 blank=True)
