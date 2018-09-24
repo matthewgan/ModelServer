@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('gallery.demo').directive('scrumboardCard', CardDirective);
+    angular.module('modelserver').directive('scrumboardCard', CardDirective);
 
     function CardDirective() {
         return {

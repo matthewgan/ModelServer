@@ -16,5 +16,7 @@
                 $scope.assets = response.data;
             })
         }
+
+        $scope.
     }
 }());

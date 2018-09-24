@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('gallery.demo');
+    var app = angular.module('modelserver');
     app.controller('LoginController',['$scope', '$http', '$location', 'LoginService', LoginController ]);
 
     function LoginController($scope, $http, $location, LoginService) {

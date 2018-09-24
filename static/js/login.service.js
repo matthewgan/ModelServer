@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('gallery.demo');
+    var app = angular.module('modelserver');
     app.service('LoginService',['$http', '$location', LoginService ]);
 
     function LoginService($http, $location) {

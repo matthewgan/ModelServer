@@ -24,7 +24,7 @@
                         <div class="card md-4 shadow-sm" ng-repeat="asset in assets">
                             {% verbatim %}
                             <img class="card-img-top"
-                                 src="{{ asset.thumbnail }}"
+                                 src="{{asset.thumbnail}}"
                                  alt="Cannot load thumbnail URL from database"
                                  width="128" height="128">
                             <div class="card-body">
@@ -41,12 +41,12 @@
                         </div>
                         <div class="card md-4 shadow-sm">
                             <img class="card-img-top"
-                                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537443671380&di=add668baa0c19a60a20db5f4f9e5091b&imgtype=0&src=http%3A%2F%2Fwww.icosky.com%2Ficon%2Fpng%2FSystem%2FAesthetica%25202%2FFavorite%2520add.png"
+                                 src="http://40.74.234.56:3001/thumbnail/Arm%20Chair.png"
                                  alt="Cannot load thumbnail URL from database"
                                  width="128" height="128">
                             <div class="card-body">
-                                <p class="card-text">{{ asset.name }}</p>
-                                <p class="card-text">{{ asset.description }}</p>
+                                <p class="card-text"></p>
+                                <p class="card-text"></p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -57,17 +57,6 @@
                     </div>
                 </div>
             </div>
-<!--
-            <div class="col-lg-4" ng-repeat="asset in assets">
-                {% verbatim %}
-                <img class="img-circle" src="{{ asset.thumbnail }}"
-                     alt="Cannot load thumbnail URL from database"
-                     width="128" height="128">
-                <h3>{{ asset.name }}</h3>
-                <p>{{ asset.description }}</p>
-                {% endverbatim %}
-            </div>
--->
         </div>
     </div>
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'assetbundles',
     'categories',
     'fbxes',
+    'corsheaders',
 ]
 
 # Settings for registration
@@ -54,8 +55,11 @@ REGISTRATION_OPEN = True
 LOGIN_REDIRECT_URL = '/'
 SIMPLE_BACKEND_REDIRECT_URL = '/'
 
+# Settings for allow CORS
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
