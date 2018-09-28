@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from categories.models import Category
 
 
@@ -12,15 +12,16 @@ class AssetBundle(models.Model):
                                  on_delete=models.SET_NULL,
                                  null=True)
     fetchUrl = models.CharField(max_length=200,
-                               verbose_name="下载地址")
+                                verbose_name="下载地址")
     thumbnail = models.CharField(max_length=200,
-                                verbose_name="缩略图",
-                                null=True,
-                                blank=True)
+                                 verbose_name="缩略图",
+                                 null=True,
+                                 blank=True)
     description = models.CharField(max_length=500,
                                    verbose_name="描述",
                                    blank=True)
-    owner = models.ForeignKey(User, related_name='asset_bundle',
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              related_name='asset_bundle',
                               verbose_name="拥有者",
                               on_delete=models.SET_NULL,
                               null=True)

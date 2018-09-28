@@ -1,3 +1,4 @@
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from categories.views import CategoryViewSet, CategoryByOwnerViewSet
 from assetbundles.views import AssetBundleViewSet, AssetBundleByOwnerViewSet
@@ -12,4 +13,11 @@ router.register(r'assetbundle', AssetBundleByOwnerViewSet, base_name='assetbundl
 router.register(r'fbxes', FbxViewSet, base_name='fbxes')
 router.register(r'fbx', FbxByOwnerViewSet, base_name='fbx')
 
-urlpatterns = router.urls
+
+urlpatterns = [
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('users/', include('users.urls')),
+]
+
+urlpatterns += router.urls

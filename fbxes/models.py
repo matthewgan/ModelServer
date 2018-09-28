@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Fbx(models.Model):
@@ -7,7 +7,8 @@ class Fbx(models.Model):
                             verbose_name="名称")
     fetchUrl = models.URLField(max_length=200,
                                verbose_name="下载地址")
-    owner = models.ForeignKey(User, verbose_name="拥有者",
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              verbose_name="拥有者",
                               related_name='fbx',
                               on_delete=models.SET_NULL,
                               null=True)

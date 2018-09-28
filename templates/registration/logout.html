@@ -1,8 +1,0 @@
-{% extends "rest_framework/api.html" %}
-{% load i18n %}
-
-{% block content %}
-<p>{% trans "Logged out" %}</p>
-<p>{% trans "Register new" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
-<p>{% trans "Login again" %}? <a href="{% url 'auth_login' %}">{% trans "Login" %}</a>!</p>
-{% endblock %}

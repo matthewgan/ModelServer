@@ -3,7 +3,7 @@ from .models import Fbx
 
 
 class FbxAdmin(admin.ModelAdmin):
-    list_display = ('name', 'fetchUrl', 'created', 'updated')
+    list_display = ('id', 'name', 'fetchUrl', 'owner', 'created', 'updated')
     search_fields = ('name', )
 
 

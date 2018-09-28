@@ -31,37 +31,33 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost", "23.100.122.129"]
 # Application definition
 
 INSTALLED_APPS = [
-    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
-    # 'assets',
-    # 'categories',
-    # 'descriptors',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
     'api',
-    'assetbundles',
+    'users',
     'categories',
     'fbxes',
+    'assetbundles',
     'corsheaders',
 ]
 
-# Settings for registration
-ACCOUNT_ACTIVATION_DAYS = 2
-REGISTRATION_OPEN = True
-LOGIN_REDIRECT_URL = '/'
-SIMPLE_BACKEND_REDIRECT_URL = '/'
-
-# Settings for allow CORS
-CORS_ORIGIN_ALLOW_ALL = True
-
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -69,12 +65,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'ModelServer.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates"), ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,22 +135,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-# STATIC_DIR = os.path.join(BASE_DIR, "static/")
-STATIC_DIR = os.path.join(BASE_DIR, "static/")
-STATICFILES_DIRS = [STATIC_DIR, ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+SITE_ID = 1
 
-# Make the default authentication mechanism for Django
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ),
     'DEFAULT_PERMISSION_CLASSES': (
         # 'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
